@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1F27A075180C270500EEF749 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E113D5917DCAC9300C373A4 /* Foundation.framework */; };
+		1F27A078180C270500EEF749 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F27A077180C270500EEF749 /* main.m */; };
+		1F27A07C180C270500EEF749 /* FastSearch.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1F27A07B180C270500EEF749 /* FastSearch.1 */; };
+		1F27A081180C279100EEF749 /* MPWFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F27A080180C279100EEF749 /* MPWFoundation.framework */; };
+		1F27A083180C27B300EEF749 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F27A082180C27B300EEF749 /* CoreLocation.framework */; };
 		3E113D5A17DCAC9300C373A4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E113D5917DCAC9300C373A4 /* Foundation.framework */; };
 		3E113D5C17DCAC9300C373A4 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E113D5B17DCAC9300C373A4 /* CoreGraphics.framework */; };
 		3E113D5E17DCAC9300C373A4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E113D5D17DCAC9300C373A4 /* UIKit.framework */; };
@@ -29,7 +34,26 @@
 		3E3F1D8517DCF7F400B5E7AF /* NSString+SearchNormalization.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3F1D8417DCF7F400B5E7AF /* NSString+SearchNormalization.m */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		1F27A072180C270500EEF749 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+				1F27A07C180C270500EEF749 /* FastSearch.1 in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		1F27A074180C270500EEF749 /* FastSearch */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = FastSearch; sourceTree = BUILT_PRODUCTS_DIR; };
+		1F27A077180C270500EEF749 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		1F27A07A180C270500EEF749 /* FastSearch-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FastSearch-Prefix.pch"; sourceTree = "<group>"; };
+		1F27A07B180C270500EEF749 /* FastSearch.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = FastSearch.1; sourceTree = "<group>"; };
+		1F27A080180C279100EEF749 /* MPWFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MPWFoundation.framework; path = ../../../Build/Release/MPWFoundation.framework; sourceTree = "<group>"; };
+		1F27A082180C27B300EEF749 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/CoreLocation.framework; sourceTree = DEVELOPER_DIR; };
 		3E113D5617DCAC9300C373A4 /* TrafficSearch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TrafficSearch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E113D5917DCAC9300C373A4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		3E113D5B17DCAC9300C373A4 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -68,6 +92,16 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		1F27A071180C270500EEF749 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1F27A083180C27B300EEF749 /* CoreLocation.framework in Frameworks */,
+				1F27A081180C279100EEF749 /* MPWFoundation.framework in Frameworks */,
+				1F27A075180C270500EEF749 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3E113D5317DCAC9300C373A4 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -82,12 +116,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1F27A076180C270500EEF749 /* FastSearch */ = {
+			isa = PBXGroup;
+			children = (
+				1F27A077180C270500EEF749 /* main.m */,
+				1F27A07B180C270500EEF749 /* FastSearch.1 */,
+				1F27A079180C270500EEF749 /* Supporting Files */,
+			);
+			path = FastSearch;
+			sourceTree = "<group>";
+		};
+		1F27A079180C270500EEF749 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				1F27A07A180C270500EEF749 /* FastSearch-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		3E113D4D17DCAC9300C373A4 = {
 			isa = PBXGroup;
 			children = (
 				3E113D8E17DCACBA00C373A4 /* TrafficDataCommandLineImporter */,
 				3E113D6117DCAC9300C373A4 /* TrafficSearch */,
 				3E113D7E17DCAC9300C373A4 /* TrafficSearchTests */,
+				1F27A076180C270500EEF749 /* FastSearch */,
 				3E113D5817DCAC9300C373A4 /* Frameworks */,
 				3E113D5717DCAC9300C373A4 /* Products */,
 			);
@@ -97,6 +150,7 @@
 			isa = PBXGroup;
 			children = (
 				3E113D5617DCAC9300C373A4 /* TrafficSearch.app */,
+				1F27A074180C270500EEF749 /* FastSearch */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -104,6 +158,8 @@
 		3E113D5817DCAC9300C373A4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1F27A082180C27B300EEF749 /* CoreLocation.framework */,
+				1F27A080180C279100EEF749 /* MPWFoundation.framework */,
 				3E113D5917DCAC9300C373A4 /* Foundation.framework */,
 				3E113D5B17DCAC9300C373A4 /* CoreGraphics.framework */,
 				3E113D5D17DCAC9300C373A4 /* UIKit.framework */,
@@ -182,6 +238,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		1F27A073180C270500EEF749 /* FastSearch */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1F27A07F180C270500EEF749 /* Build configuration list for PBXNativeTarget "FastSearch" */;
+			buildPhases = (
+				1F27A070180C270500EEF749 /* Sources */,
+				1F27A071180C270500EEF749 /* Frameworks */,
+				1F27A072180C270500EEF749 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = FastSearch;
+			productName = FastSearch;
+			productReference = 1F27A074180C270500EEF749 /* FastSearch */;
+			productType = "com.apple.product-type.tool";
+		};
 		3E113D5517DCAC9300C373A4 /* TrafficSearch */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3E113D8817DCAC9300C373A4 /* Build configuration list for PBXNativeTarget "TrafficSearch" */;
@@ -221,6 +294,7 @@
 			projectRoot = "";
 			targets = (
 				3E113D5517DCAC9300C373A4 /* TrafficSearch */,
+				1F27A073180C270500EEF749 /* FastSearch */,
 			);
 		};
 /* End PBXProject section */
@@ -242,6 +316,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		1F27A070180C270500EEF749 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1F27A078180C270500EEF749 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3E113D5217DCAC9300C373A4 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -281,6 +363,47 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		1F27A07D180C270500EEF749 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					/Library/Frameworks/,
+					/Users/marcel/programming/Build/Release,
+				);
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "FastSearch/FastSearch-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		1F27A07E180C270500EEF749 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					/Library/Frameworks/,
+					/Users/marcel/programming/Build/Release,
+				);
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "FastSearch/FastSearch-Prefix.pch";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
 		3E113D8617DCAC9300C373A4 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -380,6 +503,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		1F27A07F180C270500EEF749 /* Build configuration list for PBXNativeTarget "FastSearch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1F27A07D180C270500EEF749 /* Debug */,
+				1F27A07E180C270500EEF749 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		3E113D5117DCAC9300C373A4 /* Build configuration list for PBXProject "TrafficSearch" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

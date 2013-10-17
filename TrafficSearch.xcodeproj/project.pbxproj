@@ -12,6 +12,9 @@
 		1F27A07C180C270500EEF749 /* FastSearch.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1F27A07B180C270500EEF749 /* FastSearch.1 */; };
 		1F27A081180C279100EEF749 /* MPWFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F27A080180C279100EEF749 /* MPWFoundation.framework */; };
 		1F27A083180C27B300EEF749 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F27A082180C27B300EEF749 /* CoreLocation.framework */; };
+		1FEC3A3E180FBD7E00EC4226 /* BusStop.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FEC3A3D180FBD7E00EC4226 /* BusStop.m */; };
+		1FEC3A41180FBDDF00EC4226 /* StopList.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FEC3A40180FBDDF00EC4226 /* StopList.m */; };
+		1FEC3A44180FBE3A00EC4226 /* StopTimes.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FEC3A43180FBE3A00EC4226 /* StopTimes.m */; };
 		3E113D5A17DCAC9300C373A4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E113D5917DCAC9300C373A4 /* Foundation.framework */; };
 		3E113D5C17DCAC9300C373A4 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E113D5B17DCAC9300C373A4 /* CoreGraphics.framework */; };
 		3E113D5E17DCAC9300C373A4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E113D5D17DCAC9300C373A4 /* UIKit.framework */; };
@@ -29,8 +32,6 @@
 		3E113DB417DCAEE000C373A4 /* iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E113DB317DCAEE000C373A4 /* iPhone.storyboard */; };
 		3E113DB717DCB01C00C373A4 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E113DB617DCB01C00C373A4 /* SearchViewController.m */; };
 		3E113DBA17DCB66600C373A4 /* TimeIntervalFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E113DB917DCB66600C373A4 /* TimeIntervalFormatter.m */; };
-		3E113DBD17DCBB1300C373A4 /* transit-data.sqlite-shm in Resources */ = {isa = PBXBuildFile; fileRef = 3E113DBB17DCBB1300C373A4 /* transit-data.sqlite-shm */; };
-		3E113DBE17DCBB1300C373A4 /* transit-data.sqlite-wal in Resources */ = {isa = PBXBuildFile; fileRef = 3E113DBC17DCBB1300C373A4 /* transit-data.sqlite-wal */; };
 		3E3F1D8517DCF7F400B5E7AF /* NSString+SearchNormalization.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3F1D8417DCF7F400B5E7AF /* NSString+SearchNormalization.m */; };
 /* End PBXBuildFile section */
 
@@ -54,6 +55,12 @@
 		1F27A07B180C270500EEF749 /* FastSearch.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = FastSearch.1; sourceTree = "<group>"; };
 		1F27A080180C279100EEF749 /* MPWFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MPWFoundation.framework; path = ../../../Build/Release/MPWFoundation.framework; sourceTree = "<group>"; };
 		1F27A082180C27B300EEF749 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/CoreLocation.framework; sourceTree = DEVELOPER_DIR; };
+		1FEC3A3C180FBD7E00EC4226 /* BusStop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusStop.h; sourceTree = "<group>"; };
+		1FEC3A3D180FBD7E00EC4226 /* BusStop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusStop.m; sourceTree = "<group>"; };
+		1FEC3A3F180FBDDF00EC4226 /* StopList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StopList.h; sourceTree = "<group>"; };
+		1FEC3A40180FBDDF00EC4226 /* StopList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StopList.m; sourceTree = "<group>"; };
+		1FEC3A42180FBE3A00EC4226 /* StopTimes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StopTimes.h; path = FastImperter/StopTimes.h; sourceTree = SOURCE_ROOT; };
+		1FEC3A43180FBE3A00EC4226 /* StopTimes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StopTimes.m; path = FastImperter/StopTimes.m; sourceTree = SOURCE_ROOT; };
 		3E113D5617DCAC9300C373A4 /* TrafficSearch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TrafficSearch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E113D5917DCAC9300C373A4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		3E113D5B17DCAC9300C373A4 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -85,8 +92,6 @@
 		3E113DB617DCB01C00C373A4 /* SearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
 		3E113DB817DCB66600C373A4 /* TimeIntervalFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeIntervalFormatter.h; sourceTree = "<group>"; };
 		3E113DB917DCB66600C373A4 /* TimeIntervalFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeIntervalFormatter.m; sourceTree = "<group>"; };
-		3E113DBB17DCBB1300C373A4 /* transit-data.sqlite-shm */ = {isa = PBXFileReference; lastKnownFileType = file; path = "transit-data.sqlite-shm"; sourceTree = "<group>"; };
-		3E113DBC17DCBB1300C373A4 /* transit-data.sqlite-wal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "transit-data.sqlite-wal"; sourceTree = "<group>"; };
 		3E3F1D8317DCF7F400B5E7AF /* NSString+SearchNormalization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+SearchNormalization.h"; sourceTree = "<group>"; };
 		3E3F1D8417DCF7F400B5E7AF /* NSString+SearchNormalization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+SearchNormalization.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -119,9 +124,15 @@
 		1F27A076180C270500EEF749 /* FastSearch */ = {
 			isa = PBXGroup;
 			children = (
+				1FEC3A42180FBE3A00EC4226 /* StopTimes.h */,
+				1FEC3A43180FBE3A00EC4226 /* StopTimes.m */,
 				1F27A077180C270500EEF749 /* main.m */,
 				1F27A07B180C270500EEF749 /* FastSearch.1 */,
 				1F27A079180C270500EEF749 /* Supporting Files */,
+				1FEC3A3C180FBD7E00EC4226 /* BusStop.h */,
+				1FEC3A3D180FBD7E00EC4226 /* BusStop.m */,
+				1FEC3A3F180FBDDF00EC4226 /* StopList.h */,
+				1FEC3A40180FBDDF00EC4226 /* StopList.m */,
 			);
 			path = FastSearch;
 			sourceTree = "<group>";
@@ -181,8 +192,6 @@
 				3E113DB817DCB66600C373A4 /* TimeIntervalFormatter.h */,
 				3E113DB917DCB66600C373A4 /* TimeIntervalFormatter.m */,
 				3E113DB117DCAE6000C373A4 /* transit-data.sqlite */,
-				3E113DBB17DCBB1300C373A4 /* transit-data.sqlite-shm */,
-				3E113DBC17DCBB1300C373A4 /* transit-data.sqlite-wal */,
 				3E113DB317DCAEE000C373A4 /* iPhone.storyboard */,
 				3E113D7017DCAC9300C373A4 /* Images.xcassets */,
 				3E113D6217DCAC9300C373A4 /* Supporting Files */,
@@ -304,8 +313,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3E113DBE17DCBB1300C373A4 /* transit-data.sqlite-wal in Resources */,
-				3E113DBD17DCBB1300C373A4 /* transit-data.sqlite-shm in Resources */,
 				3E113D6617DCAC9300C373A4 /* InfoPlist.strings in Resources */,
 				3E113D7117DCAC9300C373A4 /* Images.xcassets in Resources */,
 				3E113DB217DCAE6000C373A4 /* transit-data.sqlite in Resources */,
@@ -320,7 +327,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1FEC3A3E180FBD7E00EC4226 /* BusStop.m in Sources */,
 				1F27A078180C270500EEF749 /* main.m in Sources */,
+				1FEC3A44180FBE3A00EC4226 /* StopTimes.m in Sources */,
+				1FEC3A41180FBDDF00EC4226 /* StopList.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -510,6 +520,7 @@
 				1F27A07E180C270500EEF749 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3E113D5117DCAC9300C373A4 /* Build configuration list for PBXProject "TrafficSearch" */ = {
 			isa = XCConfigurationList;

@@ -23,14 +23,27 @@
     return @"StopTime";
 }
 
+-(void)fromLine:(NSString*)line getArrival:(NSDate**)arrival departure:(NSDate**)departure stopId:(NSInteger*)stopId
+{
+    NSArray *fields = [line componentsSeparatedByString:@","];
+    *arrival = [NSDate dateWithTimeString:fields[1]];
+    *departure = [NSDate dateWithTimeString:fields[2]];
+    *stopId =[fields[3] integerValue];
+}
+
 - (void)configureObject:(NSManagedObject *)object forLine:(NSString *)line
 {
     StopTime *stopTime = (StopTime *) object;
-    NSArray *fields = [line componentsSeparatedByString:@","];
-    stopTime.arrivalTime = [NSDate dateWithTimeString:fields[1]];
-    stopTime.departureTime = [NSDate dateWithTimeString:fields[2]];
+    NSDate *arrival=nil;
+    NSDate *departure=nil;
+    NSInteger stopId=0;
+    [self fromLine:line getArrival:&arrival departure:&departure stopId:&stopId];
     
-    NSInteger stopIdentifier = [fields[3] integerValue];
+
+    stopTime.arrivalTime = arrival;
+    stopTime.departureTime = departure;
+    
+    NSInteger stopIdentifier = stopId;
     NSManagedObjectID *moid = self.stopIdentifierToObjectID[@(stopIdentifier)];
     if (moid != nil) {
         Stop *stop = (id) [self.managedObjectContext objectWithID:moid];

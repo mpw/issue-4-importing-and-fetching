@@ -11,6 +11,7 @@
 		1F27A066180C255F00EEF749 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F27A065180C255F00EEF749 /* main.m */; };
 		1F27A06A180C255F00EEF749 /* FastImperter.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1F27A069180C255F00EEF749 /* FastImperter.1 */; };
 		1F27A06F180C269000EEF749 /* MPWFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F27A06E180C269000EEF749 /* MPWFoundation.framework */; };
+		1FEC3A3B180FB51000EC4226 /* StopTimes.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FEC3A3A180FB51000EC4226 /* StopTimes.m */; };
 		3E3EDFD117D3B99D007828A3 /* ManagedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3EDFD017D3B99D007828A3 /* ManagedObject.m */; };
 		3E3F1D8217DCF26D00B5E7AF /* NSString+SearchNormalization.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3F1D8117DCF26D00B5E7AF /* NSString+SearchNormalization.m */; };
 		D25893863BCA6AA239B09794 /* Stop.m in Sources */ = {isa = PBXBuildFile; fileRef = D25897C437CFB538877AAC3D /* Stop.m */; };
@@ -56,6 +57,8 @@
 		1F27A068180C255F00EEF749 /* FastImperter-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FastImperter-Prefix.pch"; sourceTree = "<group>"; };
 		1F27A069180C255F00EEF749 /* FastImperter.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = FastImperter.1; sourceTree = "<group>"; };
 		1F27A06E180C269000EEF749 /* MPWFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MPWFoundation.framework; path = ../../../Build/Release/MPWFoundation.framework; sourceTree = "<group>"; };
+		1FEC3A39180FB51000EC4226 /* StopTimes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StopTimes.h; sourceTree = "<group>"; };
+		1FEC3A3A180FB51000EC4226 /* StopTimes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StopTimes.m; sourceTree = "<group>"; };
 		3E3EDFCF17D3B99D007828A3 /* ManagedObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManagedObject.h; sourceTree = "<group>"; };
 		3E3EDFD017D3B99D007828A3 /* ManagedObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManagedObject.m; sourceTree = "<group>"; };
 		3E3F1D8017DCF26D00B5E7AF /* NSString+SearchNormalization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+SearchNormalization.h"; sourceTree = "<group>"; };
@@ -115,6 +118,8 @@
 				1F27A065180C255F00EEF749 /* main.m */,
 				1F27A069180C255F00EEF749 /* FastImperter.1 */,
 				1F27A067180C255F00EEF749 /* Supporting Files */,
+				1FEC3A39180FB51000EC4226 /* StopTimes.h */,
+				1FEC3A3A180FB51000EC4226 /* StopTimes.m */,
 			);
 			path = FastImperter;
 			sourceTree = "<group>";
@@ -289,6 +294,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1FEC3A3B180FB51000EC4226 /* StopTimes.m in Sources */,
 				1F27A066180C255F00EEF749 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -450,6 +456,7 @@
 				1F27A06C180C255F00EEF749 /* Debug */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D2589637AD644744A1D60C81 /* Build configuration list for PBXNativeTarget "TrafficDataCommandLineImporter" */ = {
 			isa = XCConfigurationList;

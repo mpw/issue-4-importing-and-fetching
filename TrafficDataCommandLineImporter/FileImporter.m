@@ -74,6 +74,7 @@
     self.lastSaveDate = now;
     NSError *error = nil;
     NSAssert([self.managedObjectContext save:&error], @"Saving failed: %@", error);
+    NSLog(@"save succeeded");
 }
 
 @end

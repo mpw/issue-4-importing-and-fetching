@@ -112,7 +112,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		1F27A064180C255F00EEF749 /* FastImperter */ = {
+		1F27A064180C255F00EEF749 /* FastImporter */ = {
 			isa = PBXGroup;
 			children = (
 				1F27A065180C255F00EEF749 /* main.m */,
@@ -121,6 +121,7 @@
 				1FEC3A39180FB51000EC4226 /* StopTimes.h */,
 				1FEC3A3A180FB51000EC4226 /* StopTimes.m */,
 			);
+			name = FastImporter;
 			path = FastImperter;
 			sourceTree = "<group>";
 		};
@@ -144,7 +145,7 @@
 		D25893C521E731A884B62352 = {
 			isa = PBXGroup;
 			children = (
-				1F27A064180C255F00EEF749 /* FastImperter */,
+				1F27A064180C255F00EEF749 /* FastImporter */,
 				D258929255DAC8689EFD5BE0 /* Products */,
 				D2589CD7CF8D1B8589848297 /* Frameworks */,
 				D2589F7BD8756C74A3A45600 /* TrafficDataCommandLineImporter */,
@@ -229,9 +230,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		1F27A061180C255F00EEF749 /* FastImperter */ = {
+		1F27A061180C255F00EEF749 /* FastImporter */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1F27A06D180C255F00EEF749 /* Build configuration list for PBXNativeTarget "FastImperter" */;
+			buildConfigurationList = 1F27A06D180C255F00EEF749 /* Build configuration list for PBXNativeTarget "FastImporter" */;
 			buildPhases = (
 				1F27A05E180C255F00EEF749 /* Sources */,
 				1F27A05F180C255F00EEF749 /* Frameworks */,
@@ -241,7 +242,7 @@
 			);
 			dependencies = (
 			);
-			name = FastImperter;
+			name = FastImporter;
 			productName = FastImperter;
 			productReference = 1F27A062180C255F00EEF749 /* FastImperter */;
 			productType = "com.apple.product-type.tool";
@@ -284,7 +285,7 @@
 			projectRoot = "";
 			targets = (
 				D2589617590E030F65B3AEF1 /* TrafficDataCommandLineImporter */,
-				1F27A061180C255F00EEF749 /* FastImperter */,
+				1F27A061180C255F00EEF749 /* FastImporter */,
 			);
 		};
 /* End PBXProject section */
@@ -449,7 +450,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		1F27A06D180C255F00EEF749 /* Build configuration list for PBXNativeTarget "FastImperter" */ = {
+		1F27A06D180C255F00EEF749 /* Build configuration list for PBXNativeTarget "FastImporter" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1F27A06B180C255F00EEF749 /* Release */,

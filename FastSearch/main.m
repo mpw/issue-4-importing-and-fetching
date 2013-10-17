@@ -16,8 +16,8 @@ int main( int argc, char *argv[] ) {
   StopList *stops=[[StopList alloc] initWithStopData:stopsData timesData:timesData];
   CLLocation *searchLoc=[[[CLLocation alloc] initWithLatitude:52.521 longitude:13.162] autorelease];
   int closeCount=0;
-  NSLog(@"inited, start search");
-//    [[stops stopTimes] log];
+  NSLog(@"inited, start location + time search");
+//[[stops stopTimes] log];
   for (int i=0;i<1000000;i++) {
     closeCount+=[[stops stopsWithinMeters:1000 ofLocation:searchLoc andMinutes:20 ofHour:16 minute:20] count];
 //    closeCount+=[[stops stopsWithinMeters:1000 ofLocation:searchLoc] count];

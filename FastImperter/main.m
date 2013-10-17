@@ -9,6 +9,8 @@ int main( int argc, char *argv[] ) {
     StopTimes *times=[[[StopTimes alloc] initWithLocalFiles] autorelease];
     NSLog(@"done reading");
     [times sort];
+    NSLog(@"done sorting");
+//    [times log];
     [times exportOn:outfile];
     NSLog(@"done writing");
   return 0;

@@ -52,23 +52,26 @@ scalarAccessor(NSInteger, count, setCount)
     NSLog(@"stopsData length: %ld timesData length: %ld",(long)[stopsData length], (long)[timesCSVData length]);
     MPWDelimitedTable *stopsTable=[[[MPWDelimitedTable alloc] initWithCommaSeparatedData:stopsData] autorelease];
     MPWDelimitedTable *timeTable=[[[MPWDelimitedTable alloc] initWithCommaSeparatedData:timesCSVData] autorelease];
-    NSArray *stopNames=[stopsTable parcollect_doesntwork:^id ( NSDictionary *d ){
+    [stopsTable setKeysOfInterest:@[@"stop_id"]];
+    NSArray *stopNames=[stopsTable parcollect:^id ( NSDictionary *d ){
         return @([[d objectForKey:@"stop_id"] intValue]);
     }];
     [self setCount:[timeTable count]];
     [self setTimesData:[NSMutableData dataWithLength:sizeof(AllTimes)+count*sizeof(StopTime)]];
-//    StopTime *unsorted=calloc( [timeTable count]+20, sizeof(StopTime));
     
     NSMutableDictionary *stopToNumber=[NSMutableDictionary dictionary];
     for ( int i=0,max=(int)[stopNames count];i<max;i++) {
         [stopToNumber setObject:@(i) forKey:[stopNames objectAtIndex:i]];
     }
-    __block int written=0;
+//    NSLog(@"stopToNumber: %@",stopToNumber);
+    StopTime *localTimes=times->times;
     NSLog(@"extract");
-    [timeTable do:^( NSDictionary *d, int i ){
+    [timeTable setKeysOfInterest:@[ @"arrival_time", @"stop_id"]];
+    [timeTable pardo:^( NSDictionary *d, int i ){
         StopTime time;
         int h=0,m=0;
         //     char buffer[30];
+//        NSLog(@"dict[%d]: %@",i,d);
         NSString *arrival=[d objectForKey:@"arrival_time"];
         if ( [arrival length]==8 ) {
             const char *buffer=[(NSData*)arrival bytes];
@@ -79,10 +82,11 @@ scalarAccessor(NSInteger, count, setCount)
             time.hour=h;
             time.minute=m;
             time.stopIndex=[[stopToNumber objectForKey:@([[d objectForKey:@"stop_id"] intValue])] intValue];
-            times->times[written++]=time;
+//            NSLog(@"stop: %02d:%02d = %d",time.hour,time.minute,time.stopIndex);
+            localTimes[i]=time;
         }
     }];
-    [self setCount:written];
+//    [self setCount:written];
     return self;
 }
 

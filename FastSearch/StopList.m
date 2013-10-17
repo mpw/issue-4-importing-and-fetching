@@ -98,7 +98,7 @@ objectAccessor( StopTimes, stopTimes, setStopTimes)
 -initWithStopData:(NSData*)stopsData timesData:(NSData*)timesData
 {
     MPWDelimitedTable *stopsTable=[[[MPWDelimitedTable alloc] initWithCommaSeparatedData:stopsData] autorelease];
-    NSArray *stopObjects=[stopsTable parcollect_doesntwork:^id ( NSDictionary *d ){
+    NSArray *stopObjects=[stopsTable parcollect:^id ( NSDictionary *d ){
         return [[[BusStop alloc] initWithLatitude:[[d objectForKey:@"stop_lat"] floatValue]
                                         longitude:[[d objectForKey:@"stop_lon"] floatValue]
                                              name:[[d objectForKey:@"stop_id"] stringValue]] autorelease];
@@ -157,8 +157,8 @@ objectAccessor( StopTimes, stopTimes, setStopTimes)
     for (int i=minIndex;i<maxIndex;i++) {
         BusStop *cur=[stops objectAtIndex:latIndex[i].index];
         if ( [cur isWithinDeltaLat:deltaLatitude deltaLong:deltaLongitude ofLocation:loc] ) {
-            if ( [cur isWithinDistance:meters ofLocation:loc]  ) {
-                if ( notDoingTime || [stopTimes isStopIndex:latIndex[i].index betweenHour:hour minute:minute-deltaMinutes andHour:hour minute:minute+deltaMinutes] ) {
+            if ( notDoingTime || [stopTimes isStopIndex:latIndex[i].index betweenHour:hour minute:minute-deltaMinutes andHour:hour minute:minute+deltaMinutes] ) {
+                if ( [cur isWithinDistance:meters ofLocation:loc]  ) {
                     [matching addObject:cur];
                 }
             }

@@ -30,6 +30,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    int maxConnections=[[NSURLSessionConfiguration defaultSessionConfiguration] HTTPMaximumConnectionsPerHost];
+    NSLog(@"maxConnections: %d",maxConnections);
+    
     return YES;
 }
 
@@ -92,7 +95,8 @@
         NSError *error = nil;
         _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
         
-        NSDictionary *options = @{NSReadOnlyPersistentStoreOption: @YES};
+       NSDictionary *options = @{NSReadOnlyPersistentStoreOption: @YES};
+//        NSDictionary *options=@{};
         if (! [_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:options error:&error]) {
             NSLog(@"Unable to add store: %@", error);
             abort();

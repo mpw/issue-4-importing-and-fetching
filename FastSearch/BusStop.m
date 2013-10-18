@@ -17,7 +17,7 @@ objectAccessor( NSString, stationID, setStationID )
 -initWithLatitude:(float)lat longitude:(float)longitude name:(NSString*)newName
 {
     self=[super init];
-    [self setLocation:[[[CLLocation alloc] initWithLatitude:lat longitude:longitude] autorelease]];
+    [self setLocation:AUTORELEASE([[CLLocation alloc] initWithLatitude:lat longitude:longitude] )];
     [self setStationID:newName];
     return self;
 }

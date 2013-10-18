@@ -15,6 +15,14 @@
 		1FEC3A3E180FBD7E00EC4226 /* BusStop.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FEC3A3D180FBD7E00EC4226 /* BusStop.m */; };
 		1FEC3A41180FBDDF00EC4226 /* StopList.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FEC3A40180FBDDF00EC4226 /* StopList.m */; };
 		1FEC3A44180FBE3A00EC4226 /* StopTimes.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FEC3A43180FBE3A00EC4226 /* StopTimes.m */; };
+		1FEC3A4718114DBB00EC4226 /* transit-data.sqlite-shm in Resources */ = {isa = PBXBuildFile; fileRef = 1FEC3A4518114DBB00EC4226 /* transit-data.sqlite-shm */; };
+		1FEC3A4818114DBB00EC4226 /* transit-data.sqlite-wal in Resources */ = {isa = PBXBuildFile; fileRef = 1FEC3A4618114DBB00EC4226 /* transit-data.sqlite-wal */; };
+		1FEC3A491811506800EC4226 /* StopTimes.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FEC3A43180FBE3A00EC4226 /* StopTimes.m */; };
+		1FEC3A4A1811507100EC4226 /* BusStop.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FEC3A3D180FBD7E00EC4226 /* BusStop.m */; };
+		1FEC3A4B1811507400EC4226 /* StopList.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FEC3A40180FBDDF00EC4226 /* StopList.m */; };
+		1FEC3A4E1811517200EC4226 /* stops.txt in Resources */ = {isa = PBXBuildFile; fileRef = 1FEC3A4C1811516C00EC4226 /* stops.txt */; };
+		1FEC3A4F1811517500EC4226 /* times.bin in Resources */ = {isa = PBXBuildFile; fileRef = 1FEC3A4D1811516C00EC4226 /* times.bin */; };
+		1FEC3A52181152FC00EC4226 /* libMPWFoundationTouch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FEC3A51181152FC00EC4226 /* libMPWFoundationTouch.a */; };
 		3E113D5A17DCAC9300C373A4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E113D5917DCAC9300C373A4 /* Foundation.framework */; };
 		3E113D5C17DCAC9300C373A4 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E113D5B17DCAC9300C373A4 /* CoreGraphics.framework */; };
 		3E113D5E17DCAC9300C373A4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E113D5D17DCAC9300C373A4 /* UIKit.framework */; };
@@ -61,6 +69,11 @@
 		1FEC3A40180FBDDF00EC4226 /* StopList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StopList.m; sourceTree = "<group>"; };
 		1FEC3A42180FBE3A00EC4226 /* StopTimes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StopTimes.h; path = FastImperter/StopTimes.h; sourceTree = SOURCE_ROOT; };
 		1FEC3A43180FBE3A00EC4226 /* StopTimes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StopTimes.m; path = FastImperter/StopTimes.m; sourceTree = SOURCE_ROOT; };
+		1FEC3A4518114DBB00EC4226 /* transit-data.sqlite-shm */ = {isa = PBXFileReference; lastKnownFileType = file; path = "transit-data.sqlite-shm"; sourceTree = "<group>"; };
+		1FEC3A4618114DBB00EC4226 /* transit-data.sqlite-wal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "transit-data.sqlite-wal"; sourceTree = "<group>"; };
+		1FEC3A4C1811516C00EC4226 /* stops.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = stops.txt; path = data/GTFS_2013_VBB_bis_Aug_2013/stops.txt; sourceTree = SOURCE_ROOT; };
+		1FEC3A4D1811516C00EC4226 /* times.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = times.bin; path = data/GTFS_2013_VBB_bis_Aug_2013/times.bin; sourceTree = SOURCE_ROOT; };
+		1FEC3A51181152FC00EC4226 /* libMPWFoundationTouch.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libMPWFoundationTouch.a; path = ../../../Build/Release/libMPWFoundationTouch.a; sourceTree = "<group>"; };
 		3E113D5617DCAC9300C373A4 /* TrafficSearch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TrafficSearch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E113D5917DCAC9300C373A4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		3E113D5B17DCAC9300C373A4 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -111,6 +124,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1FEC3A52181152FC00EC4226 /* libMPWFoundationTouch.a in Frameworks */,
 				3E113D5C17DCAC9300C373A4 /* CoreGraphics.framework in Frameworks */,
 				3E113D6017DCAC9300C373A4 /* CoreData.framework in Frameworks */,
 				3E113D5E17DCAC9300C373A4 /* UIKit.framework in Frameworks */,
@@ -140,6 +154,8 @@
 		1F27A079180C270500EEF749 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				1FEC3A4C1811516C00EC4226 /* stops.txt */,
+				1FEC3A4D1811516C00EC4226 /* times.bin */,
 				1F27A07A180C270500EEF749 /* FastSearch-Prefix.pch */,
 			);
 			name = "Supporting Files";
@@ -169,6 +185,7 @@
 		3E113D5817DCAC9300C373A4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1FEC3A51181152FC00EC4226 /* libMPWFoundationTouch.a */,
 				1F27A082180C27B300EEF749 /* CoreLocation.framework */,
 				1F27A080180C279100EEF749 /* MPWFoundation.framework */,
 				3E113D5917DCAC9300C373A4 /* Foundation.framework */,
@@ -192,6 +209,8 @@
 				3E113DB817DCB66600C373A4 /* TimeIntervalFormatter.h */,
 				3E113DB917DCB66600C373A4 /* TimeIntervalFormatter.m */,
 				3E113DB117DCAE6000C373A4 /* transit-data.sqlite */,
+				1FEC3A4518114DBB00EC4226 /* transit-data.sqlite-shm */,
+				1FEC3A4618114DBB00EC4226 /* transit-data.sqlite-wal */,
 				3E113DB317DCAEE000C373A4 /* iPhone.storyboard */,
 				3E113D7017DCAC9300C373A4 /* Images.xcassets */,
 				3E113D6217DCAC9300C373A4 /* Supporting Files */,
@@ -313,8 +332,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1FEC3A4818114DBB00EC4226 /* transit-data.sqlite-wal in Resources */,
+				1FEC3A4718114DBB00EC4226 /* transit-data.sqlite-shm in Resources */,
+				1FEC3A4F1811517500EC4226 /* times.bin in Resources */,
 				3E113D6617DCAC9300C373A4 /* InfoPlist.strings in Resources */,
 				3E113D7117DCAC9300C373A4 /* Images.xcassets in Resources */,
+				1FEC3A4E1811517200EC4226 /* stops.txt in Resources */,
 				3E113DB217DCAE6000C373A4 /* transit-data.sqlite in Resources */,
 				3E113DB417DCAEE000C373A4 /* iPhone.storyboard in Resources */,
 			);
@@ -338,6 +361,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1FEC3A4A1811507100EC4226 /* BusStop.m in Sources */,
+				1FEC3A491811506800EC4226 /* StopTimes.m in Sources */,
+				1FEC3A4B1811507400EC4226 /* StopList.m in Sources */,
 				3E113D6C17DCAC9300C373A4 /* AppDelegate.m in Sources */,
 				3E113D9A17DCACDB00C373A4 /* TrafficDataCommandLineImporter.xcdatamodeld in Sources */,
 				3E113D6817DCAC9300C373A4 /* main.m in Sources */,
@@ -489,9 +515,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = /Library/Frameworks/;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TrafficSearch/TrafficSearch-Prefix.pch";
 				INFOPLIST_FILE = "TrafficSearch/TrafficSearch-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/marcel/programming/Build/Release,
+				);
+				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -502,9 +534,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = /Library/Frameworks/;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TrafficSearch/TrafficSearch-Prefix.pch";
 				INFOPLIST_FILE = "TrafficSearch/TrafficSearch-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/marcel/programming/Build/Release,
+				);
+				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

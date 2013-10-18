@@ -48,7 +48,7 @@ objectAccessor( StopTimes, stopTimes, setStopTimes)
 {
     self=[super init];
     [self setStops:newStops];
-    [self setStopTimes:[[[StopTimes alloc] initWithData:timesData] autorelease]];
+    [self setStopTimes:AUTORELEASE([[StopTimes alloc] initWithData:timesData])];
     [self createIndexes];
     return self;
 }
@@ -97,12 +97,15 @@ objectAccessor( StopTimes, stopTimes, setStopTimes)
 
 -initWithStopData:(NSData*)stopsData timesData:(NSData*)timesData
 {
-    MPWDelimitedTable *stopsTable=[[[MPWDelimitedTable alloc] initWithCommaSeparatedData:stopsData] autorelease];
+    NSLog(@"initWithStopData");
+    MPWDelimitedTable *stopsTable=AUTORELEASE([[MPWDelimitedTable alloc] initWithCommaSeparatedData:stopsData]);
+    [stopsTable setKeysOfInterest:@[@"stop_lat",@"stop_lon" ,@"stop_id" ]];
     NSArray *stopObjects=[stopsTable parcollect:^id ( NSDictionary *d ){
-        return [[[BusStop alloc] initWithLatitude:[[d objectForKey:@"stop_lat"] floatValue]
+        return AUTORELEASE([[BusStop alloc] initWithLatitude:[[d objectForKey:@"stop_lat"] floatValue]
                                         longitude:[[d objectForKey:@"stop_lon"] floatValue]
-                                             name:[[d objectForKey:@"stop_id"] stringValue]] autorelease];
+                                                        name:[d objectForKey:@"stop_id"]]);
     }];
+    NSLog(@"done initWithStopData");
     return [self initWithStops:stopObjects timesData:timesData];
 }
 
@@ -157,8 +160,11 @@ objectAccessor( StopTimes, stopTimes, setStopTimes)
     for (int i=minIndex;i<maxIndex;i++) {
         BusStop *cur=[stops objectAtIndex:latIndex[i].index];
         if ( [cur isWithinDeltaLat:deltaLatitude deltaLong:deltaLongitude ofLocation:loc] ) {
-            if ( notDoingTime || [stopTimes isStopIndex:latIndex[i].index betweenHour:hour minute:minute-deltaMinutes andHour:hour minute:minute+deltaMinutes] ) {
-                if ( [cur isWithinDistance:meters ofLocation:loc]  ) {
+            if ( [cur isWithinDistance:meters ofLocation:loc]  ) {
+                if (minute-deltaMinutes < 0 && hour==0) {
+                    minute=deltaMinutes;
+                }
+                if ( notDoingTime || [stopTimes isStopIndex:latIndex[i].index betweenHour:hour minute:minute-deltaMinutes andHour:hour minute:minute+deltaMinutes] ) {
                     [matching addObject:cur];
                 }
             }

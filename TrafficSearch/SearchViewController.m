@@ -11,7 +11,7 @@
 #import "StopSearch.h"
 #import "AppDelegate.h"
 #import "TimeIntervalFormatter.h"
-
+#import "StopList.h"
 
 
 @import CoreLocation;
@@ -25,6 +25,8 @@
 @property (nonatomic, strong) TimeIntervalFormatter *timeIntervalFormatter;
 @property (nonatomic, strong) NSNumberFormatter *searchesPerSecondFormatter;
 @property (nonatomic, copy) NSArray *names;
+@property (nonatomic, strong)  StopList* stops;
+
 
 @end
 
@@ -43,6 +45,15 @@
     self.searchesPerSecondFormatter.maximumFractionDigits = 0;
     
     self.names = @[@"U Görli", @"Jüterboger Str", @"Jüdisches Museum", @"Spandauer Damm", @"Württembergallee", @"Hohenzollernring", @"Lüdenscheider Weg", @"Außenweg", @"Bismarckplatz", @"Museen", @"Steinstücken", @"U Wittenbergplatz", @"Göttinger", @"Rixdorfer", @"Goltzstr", @"Pfahlerstr", @"Maximiliankorso", @"S Hackescher", @"Simon-Dach-Str", @"Stadion Buschallee", @"Dorfstr", @"Marksburgstr", @"Beilsteiner", @"Rahnsdorfer", @"Spreestr", @"S Baumschulenweg", @"Wegedornstr", @"Velten", @"Mahlow", @"Petersdorf", @"Bützow", @"Birkenstr", @"Willy-Brandt-Haus", @"Goerdelerdamm", @"Dovebrücke",];
+
+#if 0
+    NSURL *stopsURL=[[NSBundle mainBundle] URLForResource:@"stops" withExtension:@"txt"];
+    NSURL *stopsTimesURL=[[NSBundle mainBundle] URLForResource:@"times" withExtension:@"bin"];
+    
+    NSData *stopsData = [NSData dataWithContentsOfURL:stopsURL options:NSDataReadingMapped error:nil];
+    NSData *timesData = [NSData dataWithContentsOfURL:stopsTimesURL options:NSDataReadingMapped error:nil];
+    self.stops=[[StopList alloc] initWithStopData:stopsData timesData:timesData];
+#endif
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath;
@@ -62,15 +73,15 @@
 
 - (void)startRandomLocationSearch;
 {
-    [self startSearchWithCount:1000 block:^{
-        [self randomLocationSearch];
+    [self startSearchWithCount_CoreData:1000 block:^{
+        [self randomLocationSearchCD];
     }];
 }
 
 - (void)startRandomLocationAndTimeSearch;
 {
-    [self startSearchWithCount:30 block:^{
-        [self randomLocationAndTimeSearch];
+    [self startSearchWithCount_CoreData:30 block:^{
+        [self randomLocationAndTimeSearchCD];
     }];
 }
 
@@ -88,7 +99,7 @@
     }];
 }
 
-- (void)startSearchWithCount:(int)count block:(dispatch_block_t)block;
+- (void)startSearchWithCount_CoreData:(int)count block:(dispatch_block_t)block;
 {
     NSTimeInterval const start = [NSDate timeIntervalSinceReferenceDate];
     for (int i = 0; i < count; ++i) {
@@ -103,12 +114,27 @@
     }];
 }
 
+- (void)startSearchWithCount:(int)count block:(dispatch_block_t)block;
+{
+    NSTimeInterval const start = [NSDate timeIntervalSinceReferenceDate];
+    for (int i = 0; i < count; ++i) {
+        block();
+    };
+    if (1) {
+        NSTimeInterval const end = [NSDate timeIntervalSinceReferenceDate];
+        NSTimeInterval const timeInterval = (end - start) / count;
+        
+        self.timePerSearchLabel.text = [self.timeIntervalFormatter stringForObjectValue:@(timeInterval)];
+        self.searchesPerSecondLabel.text = [self.searchesPerSecondFormatter stringFromNumber:@(1. / timeInterval)];
+    };
+}
+
 static double randomUnity(void)
 {
     return (arc4random() / 2147483647.5) - 1;
 }
 
-- (void)randomLocationSearch;
+- (void)randomLocationSearchCD
 {
     CLLocationDegrees latitude = 52.5221280;
     CLLocationDegrees longitude = 13.4146610;
@@ -128,7 +154,19 @@ static double randomUnity(void)
     }];
 }
 
-- (void)randomLocationAndTimeSearch;
+- (void)randomLocationSearch
+{
+    CLLocationDegrees latitude = 52.5221280;
+    CLLocationDegrees longitude = 13.4146610;
+    
+    latitude += 0.15 * randomUnity();
+    longitude += 0.1 * randomUnity();
+    
+    CLLocation *location = [[CLLocation alloc] initWithLatitude:latitude longitude:longitude];
+    [self.stops stopsWithinMeters:80 ofLocation:location];
+}
+
+- (void)randomLocationAndTimeSearchCD
 {
     CLLocationDegrees latitude = 52.5221280;
     CLLocationDegrees longitude = 13.4146610;
@@ -150,6 +188,23 @@ static double randomUnity(void)
         SearchViewController *searchViewController = weakSelf;
         (void) searchViewController;
     }];
+}
+
+- (void)randomLocationAndTimeSearch
+{
+    CLLocationDegrees latitude = 52.5221280;
+    CLLocationDegrees longitude = 13.4146610;
+    
+    latitude += 0.15 * randomUnity();
+    longitude += 0.1 * randomUnity();
+    
+    CLLocation *location = [[CLLocation alloc] initWithLatitude:latitude longitude:longitude];
+    NSDateComponents *timeOfDay = [[NSDateComponents alloc] init];
+    timeOfDay.hour = arc4random_uniform(24);
+    timeOfDay.minute = arc4random_uniform(60);
+//    timeOfDay.second = arc4random_uniform(60);
+    [self.stops stopsWithinMeters:80 ofLocation:location andMinutes:10 ofHour:timeOfDay.hour minute:timeOfDay.minute];
+
 }
 
 - (void)naiveStringSearch;

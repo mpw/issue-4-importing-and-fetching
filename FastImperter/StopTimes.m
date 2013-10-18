@@ -9,6 +9,7 @@
 #import "StopTimes.h"
 #import <MPWFoundation/MPWFoundation.h>
 #import <MPWFoundation/MPWDelimitedTable.h>
+#import <MPWFoundation/MPWSmallStringTable.h>
 
 typedef struct {
     unsigned int   stopIndex:20;
@@ -43,18 +44,20 @@ scalarAccessor(NSInteger, count, setCount)
     times=(AllTimes*)[newData bytes];
 }
 
+static inline int twoDigitsAt( const char *buffer ) {
+    return (buffer[0]-'0') * 10  + buffer[1]-'0';
+}
 
 -initWithLocalFiles
 {
     self=[super init];
-    NSData *stopsData=[NSData dataWithContentsOfFile:@"stops.txt"];
+    NSData *stopsData=[NSData dataWithContentsOfMappedFile:@"stops.txt"];
     NSData *timesCSVData=[NSData dataWithContentsOfMappedFile:@"stop_times.txt"];
-    NSLog(@"stopsData length: %ld timesData length: %ld",(long)[stopsData length], (long)[timesCSVData length]);
-    MPWDelimitedTable *stopsTable=[[[MPWDelimitedTable alloc] initWithCommaSeparatedData:stopsData] autorelease];
-    MPWDelimitedTable *timeTable=[[[MPWDelimitedTable alloc] initWithCommaSeparatedData:timesCSVData] autorelease];
+    MPWDelimitedTable *stopsTable=AUTORELEASE([[MPWDelimitedTable alloc] initWithCommaSeparatedData:stopsData]);
+    MPWDelimitedTable *timeTable=AUTORELEASE([[MPWDelimitedTable alloc] initWithCommaSeparatedData:timesCSVData]);
     [stopsTable setKeysOfInterest:@[@"stop_id"]];
     NSArray *stopNames=[stopsTable parcollect:^id ( NSDictionary *d ){
-        return @([[d objectForKey:@"stop_id"] intValue]);
+        return @([[(MPWSmallStringTable*)d objectForCString:"stop_id"] intValue]);
     }];
     [self setCount:[timeTable count]];
     [self setTimesData:[NSMutableData dataWithLength:sizeof(AllTimes)+count*sizeof(StopTime)]];
@@ -67,26 +70,19 @@ scalarAccessor(NSInteger, count, setCount)
     StopTime *localTimes=times->times;
     NSLog(@"extract");
     [timeTable setKeysOfInterest:@[ @"arrival_time", @"stop_id"]];
-    [timeTable pardo:^( NSDictionary *d, int i ){
+    [timeTable pardo:^( NSDictionary *d1, int i ){
+        MPWSmallStringTable *d=(MPWSmallStringTable*)d1;
         StopTime time;
-        int h=0,m=0;
-        //     char buffer[30];
-//        NSLog(@"dict[%d]: %@",i,d);
-        NSString *arrival=[d objectForKey:@"arrival_time"];
+        NSString *arrival=[d objectForCString:"arrival_time"];
         if ( [arrival length]==8 ) {
             const char *buffer=[(NSData*)arrival bytes];
-            //       [times getBytes:(void *)buffer maxLength:10 usedLength:NULL encoding:NSASCIIStringEncoding options:0 range:NSMakeRange(0,8) remainingRange:NULL];
-            //       buffer[8]=0;
-            h=(buffer[0]-'0') * 10  + buffer[1]-'0';
-            m=(buffer[3]-'0') * 10  + buffer[4]-'0';
-            time.hour=h;
-            time.minute=m;
-            time.stopIndex=[[stopToNumber objectForKey:@([[d objectForKey:@"stop_id"] intValue])] intValue];
-//            NSLog(@"stop: %02d:%02d = %d",time.hour,time.minute,time.stopIndex);
+            time.hour=twoDigitsAt(buffer);
+            time.minute=twoDigitsAt(buffer+3);
+            time.stopIndex=[[stopToNumber objectForKey:@([[d objectForCString:"stop_id"] intValue])] intValue];
+
             localTimes[i]=time;
         }
     }];
-//    [self setCount:written];
     return self;
 }
 
@@ -132,7 +128,7 @@ scalarAccessor(NSInteger, count, setCount)
         for (int m=0;m<60;m++) {
             int offset=bucketOffsets[h][m];
             int numElements=bucketOffsets[h][m+1]-offset;
-            qsort_b(sorted+offset, numElements, sizeof(StopTime), ^int(const void *va , const void *vb ) {
+            mergesort_b(sorted+offset, numElements, sizeof(StopTime), ^int(const void *va , const void *vb ) {
                 StopTime *a=(StopTime*)va;
                 StopTime *b=(StopTime*)vb;
                 return a->stopIndex - b->stopIndex;
@@ -185,6 +181,13 @@ scalarAccessor(NSInteger, count, setCount)
 
 -(BOOL)isStopIndex:(int)anIndex betweenHour:(int)hStart minute:(int)mStart andHour:(int)hStop minute:(int)mStop
 {
+    while ( mStart < 0) {
+        mStart+=60;
+        hStart--;
+    }
+    if ( hStart < 0) {
+        hStart+=24;
+    }
     int startTimeIndex=times->bucketOffsets[hStart][mStart];
     int stopTimeIndex=times->bucketOffsets[hStop][mStop];
 #if 1

@@ -27,6 +27,7 @@ typedef struct {
 
 -initWithStopData:(NSData*)stopsData timesData:(NSData*)timesData;
 -stopsWithinMeters:(float)meters ofLocation:(CLLocation*)loc andMinutes:(int)deltaMinutes ofHour:(int)hour minute:(int)minute;
+-stopsWithinMeters:(float)meters ofLocation:(CLLocation*)loc;
 
 @end
 

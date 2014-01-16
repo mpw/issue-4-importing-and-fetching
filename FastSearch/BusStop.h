@@ -14,6 +14,7 @@
 {
     CLLocation *location;
     NSString   *stationID;
+    float       longitude,latitude;
 }
 
 -initWithLatitude:(float)lat longitude:(float)longitude name:(NSString*)newName;

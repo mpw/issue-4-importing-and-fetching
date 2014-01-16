@@ -23,23 +23,16 @@ objectAccessor( StopTimes, stopTimes, setStopTimes)
 {
     NSInteger count=[stops count];
     latIndex=malloc( sizeof *latIndex * count );
-    //  longIndex=malloc(sizeof  *longIndex * count );
     for (int i=0;i<count; i++ ) {
         BusStop *s=[stops objectAtIndex:i];
         latIndex[i].coord=[s latitude];
         latIndex[i].index=i;
-        //    longIndex[i].coord=[s longitude];
-        //    longIndex[i].index=i;
     }
 #if 1
     qsort_b(latIndex, count , sizeof *latIndex, ^(const void *a, const void *b){
         float diff = ((CoordIndex*)b)->coord - ((CoordIndex*)a)->coord;
         return diff <0 ? 1 : diff > 0 ? -1 :0;
     });
-    //  qsort_b(longIndex, count , sizeof *longIndex, ^(const void *a, const void *b){
-    //     float diff = ((CoordIndex*)b)->coord - ((CoordIndex*)a)->coord;
-    //     return diff <0 ? 1 : diff > 0 ? -1 :0;
-    //  });
 #endif
 }
 
@@ -70,7 +63,7 @@ objectAccessor( StopTimes, stopTimes, setStopTimes)
     return max;
 }
 
--(NSMutableIndexSet*)indexesWithin_linear:(float)delta ofBase:(float)base usingIndex:(CoordIndex*)anIndex
+-(NSMutableIndexSet*)indexesWithin:(float)delta ofBase:(float)base usingIndex:(CoordIndex*)anIndex
 {
     NSMutableIndexSet *s=[NSMutableIndexSet indexSet];
     for (int i=0,max=(int)[stops count];i<max;i++) {
@@ -83,7 +76,7 @@ objectAccessor( StopTimes, stopTimes, setStopTimes)
 }
 
 
--(NSMutableIndexSet*)indexesWithin:(float)delta ofBase:(float)base usingIndex:(CoordIndex*)anIndex
+-(NSMutableIndexSet*)indexesWithin_binary:(float)delta ofBase:(float)base usingIndex:(CoordIndex*)anIndex
 {
     int minIndex=[self bsearchForClosestCoord:base-delta inTable:anIndex];
     int maxIndex=[self bsearchForClosestCoord:base+delta inTable:anIndex];
@@ -118,6 +111,7 @@ objectAccessor( StopTimes, stopTimes, setStopTimes)
     }];
     return foundStops;
 }
+
 -stopsWithinMeters:(float)meters ofLocation:(CLLocation*)loc andMinutes:(int)deltaMinutes ofHour:(int)hour minute:(int)minute
 {
     double const D = meters * 1.1;
@@ -128,38 +122,14 @@ objectAccessor( StopTimes, stopTimes, setStopTimes)
     BOOL notDoingTime=hour < 0;
     
     NSMutableArray *matching=[NSMutableArray array];
-#if 0
-    for ( BusStop* cur in stops ) {
-        if ( [cur isWithinDeltaLat:deltaLatitude deltaLong:deltaLongitude ofLocation:loc] ) {
-            if ( [cur isWithinDistance:meters ofLocation:loc] ) {
-                [matching addObject:cur];
-            }
-        }
-    }
-#elif 0
-    NSMutableIndexSet *latMatches=[self indexesWithin:deltaLatitude ofBase:loc.coordinate.latitude usingIndex:latIndex];
-    //    NSMutableIndexSet *longMatches=[self indexesWithin:deltaLongitude ofBase:loc.coordinate.longitude usingIndex:longIndex];
-    NSMutableIndexSet *finalSet = [[[NSMutableIndexSet alloc] init] autorelease];
-    //    NSLog(@"latMatches: %@",latMatches);
-    //    NSLog(@"long: %@",longMatches);
-    
-    [latMatches enumerateIndexesUsingBlock:^(NSUInteger index, BOOL *stop) {
-        if ([longMatches containsIndex:index]) [finalSet addIndex:index];
-    }];
-    
-    
-    [finalSet enumerateIndexesUsingBlock:^(NSUInteger index, BOOL *stop) {
-        BusStop* cur=[stops objectAtIndex:index];
-        if ( [cur isWithinDistance:meters ofLocation:loc] ) {
-            [matching addObject:cur];
-        }
-    } ];
-#else
     int minIndex=[self bsearchForClosestCoord:loc.coordinate.latitude-deltaLatitude inTable:latIndex];
     int maxIndex=[self bsearchForClosestCoord:loc.coordinate.latitude+deltaLatitude inTable:latIndex];
+//    int minIndex=0;
+//    int maxIndex=[stops count];
+    
     for (int i=minIndex;i<maxIndex;i++) {
         BusStop *cur=[stops objectAtIndex:latIndex[i].index];
-        if ( [cur isWithinDeltaLat:deltaLatitude deltaLong:deltaLongitude ofLocation:loc] ) {
+        if (  [cur isWithinDeltaLat:deltaLatitude deltaLong:deltaLongitude ofLocation:loc] ) {
             if ( [cur isWithinDistance:meters ofLocation:loc]  ) {
                 if (minute-deltaMinutes < 0 && hour==0) {
                     minute=deltaMinutes;
@@ -171,7 +141,6 @@ objectAccessor( StopTimes, stopTimes, setStopTimes)
         }
         
     }
-#endif
     
     return matching;
 }

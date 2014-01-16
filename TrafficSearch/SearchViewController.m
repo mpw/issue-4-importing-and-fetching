@@ -80,7 +80,7 @@
 
 - (void)startRandomLocationAndTimeSearch;
 {
-    [self startSearchWithCount_CoreData:30 block:^{
+    [self startSearchWithCount_CoreData:10 block:^{
         [self randomLocationAndTimeSearchCD];
     }];
 }
@@ -106,11 +106,13 @@
         block();
     };
     [[AppDelegate sharedDelegate].managedObjectContext performBlock:^{
+        NSLog(@"===computing end time====");
         NSTimeInterval const end = [NSDate timeIntervalSinceReferenceDate];
         NSTimeInterval const timeInterval = (end - start) / count;
         
         self.timePerSearchLabel.text = [self.timeIntervalFormatter stringForObjectValue:@(timeInterval)];
         self.searchesPerSecondLabel.text = [self.searchesPerSecondFormatter stringFromNumber:@(1. / timeInterval)];
+        NSLog(@"=== did set times ====");
     }];
 }
 
@@ -136,6 +138,7 @@ static double randomUnity(void)
 
 - (void)randomLocationSearchCD
 {
+//    NSLog(@"randomLocationSearchCD");
     CLLocationDegrees latitude = 52.5221280;
     CLLocationDegrees longitude = 13.4146610;
     
@@ -168,6 +171,7 @@ static double randomUnity(void)
 
 - (void)randomLocationAndTimeSearchCD
 {
+//    NSLog(@"randomLocationAndTimeSearchCD");
     CLLocationDegrees latitude = 52.5221280;
     CLLocationDegrees longitude = 13.4146610;
     

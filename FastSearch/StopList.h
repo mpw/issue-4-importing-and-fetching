@@ -18,11 +18,10 @@ typedef struct {
 
 @interface StopList : NSObject
 {
-    NSArray *stops;
-    CoordIndex *latIndex;
-    //  CoordIndex *longIndex;
-    NSData *stopTimesData;
-    StopTimes *stopTimes;
+    NSArray     *stops;
+    CoordIndex  *latIndex;
+    NSData      *stopTimesData;
+    StopTimes   *stopTimes;
 }
 
 -initWithStopData:(NSData*)stopsData timesData:(NSData*)timesData;

@@ -11,34 +11,40 @@
 
 @implementation BusStop
 
-objectAccessor( CLLocation, location, setLocation)
+lazyAccessor( CLLocation, location, setLocation, createLocation)
 objectAccessor( NSString, stationID, setStationID )
 
--initWithLatitude:(float)lat longitude:(float)longitude name:(NSString*)newName
+-createLocation
+{
+    return AUTORELEASE([[CLLocation alloc] initWithLatitude:latitude   longitude:longitude] );
+}
+
+-initWithLatitude:(float)lat longitude:(float)longit  name:(NSString*)newName
 {
     self=[super init];
-    [self setLocation:AUTORELEASE([[CLLocation alloc] initWithLatitude:lat longitude:longitude] )];
+    latitude=lat;
+    longitude=longit;
     [self setStationID:newName];
     return self;
 }
 
 -(BOOL)isWithinDistance:(float)dist ofLocation:(CLLocation*)loc
 {
-    return [location distanceFromLocation:loc] < dist;
+    return [[self createLocation] distanceFromLocation:loc] < dist;
 }
 
 -(BOOL)isWithinDeltaLat:(float)deltaLatitude deltaLong:(float)deltaLongitude ofLocation:(CLLocation*)loc
 {
     CLLocationCoordinate2D target=[loc coordinate];
-    CLLocationCoordinate2D me=[location coordinate];
     
-    return fabs( target.latitude - me.latitude ) < deltaLatitude &&
-    fabs( target.longitude - me.longitude ) < deltaLongitude;
+    return fabs( target.latitude - latitude ) < deltaLatitude &&
+    fabs( target.longitude - longitude ) < deltaLongitude;
 }
 
--(float)latitude {  return [location coordinate].latitude; }
--(float)longitude {  return [location coordinate].longitude; }
+-(float)latitude {  return latitude; }
+-(float)longitude {  return longitude; }
 
--description { return [NSString stringWithFormat:@"<Stop: %@ at %@>",stationID,location]; }
+-description { return [NSString stringWithFormat:@"<Stop: %@ at %g,%g>",stationID,latitude,longitude]; }
+
 
 @end

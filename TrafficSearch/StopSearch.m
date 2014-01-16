@@ -67,7 +67,7 @@
             stops = [stops filteredArrayUsingPredicate:[self exactLatitudeAndLongitudePredicateForCoordinate:self.location.coordinate]];
         }
         self.stops = stops;
-        
+//        NSLog(@"%d results",[stops count]);
         if (completionHandler != nil) {
             if (self.handlerQueue != nil) {
                 [self.handlerQueue addOperationWithBlock:completionHandler];

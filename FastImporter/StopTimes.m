@@ -16,11 +16,11 @@ typedef struct {
     unsigned int   hour:5,minute:6;
 } StopTime;
 
-typedef struct {
+typedef struct {            // index into a StopTimes array by [hour][minute]
     int bytime[32][60];
 } Buckets;
 
-typedef struct {
+typedef struct {            //  Combine the StopTimes with index
     Buckets bucketOffsets;
     StopTime times[];
 } AllTimes;
@@ -105,6 +105,9 @@ static inline int twoDigitsAt( const char *buffer ) {
     Buckets bucketOffsets;
     bzero( &bucketSizes, sizeof bucketSizes );
     bzero( &bucketOffsets, sizeof bucketOffsets );
+    
+    //---   size each of the buckets
+    
     for (int i=0;i<count;i++) {
         StopTime current=times->times[i];
         if ( current.hour >= 31 || current.minute >= 60 ) {
@@ -113,6 +116,9 @@ static inline int twoDigitsAt( const char *buffer ) {
             bucketSizes.bytime[current.hour][current.minute]++;
         }
     }
+    
+    //---   accumulate sizes into offsets
+    
     int currentOffset=0;
     for (int h=0;h<30;h++) {
         for (int m=0;m<60;m++) {
@@ -120,7 +126,13 @@ static inline int twoDigitsAt( const char *buffer ) {
             currentOffset+=bucketSizes.bytime[h][m];
         }
     }
+    
+    //---   and copy those offsets into destination
+    
     memcpy( &times->bucketOffsets, &bucketOffsets, sizeof times->bucketOffsets );
+    
+    //---   bucket-sort the stop times
+    
     for (int i=0;i<count;i++) {
         StopTime current=times->times[i];
         sorted[bucketOffsets.bytime[current.hour][current.minute]]=current;
@@ -138,6 +150,8 @@ static inline int twoDigitsAt( const char *buffer ) {
             });
         }
     }
+
+    //--- copy into final structure
     
     memcpy(times->times, sorted, count * sizeof(StopTime) );
 }

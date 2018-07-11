@@ -16,18 +16,18 @@ typedef struct {
     unsigned int   hour:5,minute:6;
 } StopTime;
 
-typedef struct {            // index into a StopTimes array by [hour][minute]
-    int bytime[32][60];
+typedef struct {          // index into a StopTimes array by [hour][minute]
+    int      bytime[32][60];
 } Buckets;
 
-typedef struct {            //  Combine the StopTimes with index
-    Buckets bucketOffsets;
+typedef struct {          //  Combine the StopTimes with index
+    Buckets  bucketOffsets;
     StopTime times[];
 } AllTimes;
 
 
 @interface StopTimes() {
-    NSInteger      count;
+    NSInteger count;
     AllTimes *times;
     NSData   *timesData;
 }
@@ -59,7 +59,7 @@ static inline int twoDigitsAt( const char *buffer ) {
     MPWDelimitedTable *stopsTable=AUTORELEASE([[MPWDelimitedTable alloc] initWithCommaSeparatedData:stopsData]);
     MPWDelimitedTable *timeTable=AUTORELEASE([[MPWDelimitedTable alloc] initWithCommaSeparatedData:timesCSVData]);
     [stopsTable setKeysOfInterest:@[@"stop_id"]];
-    NSArray *stopNames=[stopsTable parcollect:^id ( NSDictionary *d ){
+    NSArray *stopNames=[stopsTable collect:^id ( NSDictionary *d ){
         return @([[(MPWSmallStringTable*)d objectForCString:"stop_id"] intValue]);
     }];
     [self setCount:[timeTable count]];
@@ -69,7 +69,7 @@ static inline int twoDigitsAt( const char *buffer ) {
     for ( int i=0,max=(int)[stopNames count];i<max;i++) {
         [stopToNumber setObject:@(i) forKey:[stopNames objectAtIndex:i]];
     }
-//    NSLog(@"stopToNumber: %@",stopToNumber);
+ 
     StopTime *localTimes=times->times;
     NSLog(@"extract");
     [timeTable setKeysOfInterest:@[ @"arrival_time", @"stop_id"]];
